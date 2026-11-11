@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block breadcrumb %}About{% endblock %}
+{% block style %}
+<style>
+.about-intro{background:var(--bg2);border:1px solid var(--border2);border-radius:9px;padding:20px 22px;margin-bottom:16px}
+.about-intro p{font-size:13px;color:var(--text2);line-height:1.75}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.a-card{background:var(--bg2);border:1px solid var(--border2);border-radius:9px;padding:18px 20px}
+.a-card h2{font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px}
+.road-item{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.step{width:24px;height:24px;border-radius:50%;background:var(--bg3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--text3);flex-shrink:0;margin-top:1px}
+.step.now{background:rgba(31,111,235,.12);border-color:rgba(31,111,235,.3);color:var(--accent-t)}
+.road-body h4{font-size:12.5px;font-weight:500;color:var(--text);margin-bottom:2px}
+.road-body p{font-size:11.5px;color:var(--text3);line-height:1.5}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-size:11.5px;padding:4px 11px;background:var(--bg3);border:1px solid var(--border2);border-radius:5px;color:var(--text2)}
+.tag.hl{border-color:rgba(31,111,235,.3);color:var(--accent-t);background:rgba(31,111,235,.07)}
+.checklist{list-style:none;margin-top:14px}
+.checklist li{font-size:12.5px;color:var(--text2);padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.checklist li:last-child{border-bottom:none}
+.chk{color:var(--success);font-size:14px}
+</style>
+{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>About DevGuard</h1>
+  <p>A 4-part project building a production-grade DevSecOps pipeline from scratch.</p>
+</div>
+
+<div class="about-intro">
+  <p>DevGuard demonstrates how to build a fully automated DevSecOps deployment pipeline — starting from a simple Flask web app and progressing to a production-ready system with CI/CD, security scanning, containerisation, and cloud deployment. Security is shifted left: checks run at every stage, not as an afterthought before production.</p>
+</div>
+
+<div class="two-col">
+  <div class="a-card">
+    <h2>Project roadmap</h2>
+    <div class="road-item">
+      <div class="step now">1</div>
+      <div class="road-body"><h4>Flask app + Docker + tests</h4><p>Current stage. Flask routes, Dockerfile, pytest suite.</p></div>
+    </div>
+    <div class="road-item">
+      <div class="step">2</div>
+      <div class="road-body"><h4>GitHub Actions CI/CD</h4><p>Automated pipeline triggered on every push to main.</p></div>
+    </div>
+    <div class="road-item">
+      <div class="step">3</div>
+      <div class="road-body"><h4>Security scanning</h4><p>Bandit for Python code, Trivy for container images.</p></div>
+    </div>
+    <div class="road-item">
+      <div class="step">4</div>
+      <div class="road-body"><h4>Cloud deployment</h4><p>Deploy to AWS ECS or GCP Cloud Run.</p></div>
+    </div>
+  </div>
+
+  <div class="a-card">
+    <h2>Tech stack</h2>
+    <div class="tags">
+      <span class="tag hl">Python 3.11</span>
+      <span class="tag hl">Flask 3.0</span>
+      <span class="tag hl">Docker</span>
+      <span class="tag hl">pytest</span>
+      <span class="tag">GitHub Actions</span>
+      <span class="tag">Bandit</span>
+      <span class="tag">Trivy</span>
+      <span class="tag">AWS ECS</span>
+      <span class="tag">GCP Cloud Run</span>
+    </div>
+    <ul class="checklist">
+      <li><span class="chk">✓</span> Security scanning at build time</li>
+      <li><span class="chk">✓</span> Tests run before every deploy</li>
+      <li><span class="chk">✓</span> Immutable container images</li>
+      <li><span class="chk">✓</span> Cloud-native deployment target</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

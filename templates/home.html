@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block breadcrumb %}Home{% endblock %}
+{% block style %}
+<style>
+.hero{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:32px 36px;margin-bottom:20px}
+.hero h2{font-size:22px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.hero p{font-size:13px;color:var(--text2);line-height:1.75;max-width:520px;margin-bottom:20px}
+.btn-row{display:flex;gap:10px}
+.btn{padding:8px 18px;border-radius:7px;font-size:13px;font-weight:500;text-decoration:none;border:none;cursor:pointer}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#388bfd}
+.btn-ghost{background:var(--bg3);color:var(--text);border:1px solid var(--border2)}
+.btn-ghost:hover{background:var(--bg4)}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feat{background:var(--bg2);border:1px solid var(--border2);border-radius:9px;padding:18px 20px}
+.feat-icon{font-size:20px;margin-bottom:10px}
+.feat h3{font-size:13px;font-weight:600;margin-bottom:6px}
+.feat p{font-size:12px;color:var(--text2);line-height:1.65}
+.hero-meta{display:flex;gap:20px;margin-bottom:20px}
+.meta-item{font-size:11.5px;color:var(--text3);display:flex;align-items:center;gap:5px}
+.meta-dot{width:5px;height:5px;border-radius:50%;background:var(--success)}
+</style>
+{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Welcome to DevGuard 🛡️</h1>
+  <p>Automated DevSecOps deployment pipeline</p>
+</div>
+
+<div class="hero">
+  <h2>Ship secure software — automatically</h2>
+  <div class="hero-meta">
+    <div class="meta-item"><div class="meta-dot"></div>Build passing</div>
+    <div class="meta-item"><div class="meta-dot"></div>8/8 tests passing</div>
+    <div class="meta-item"><div class="meta-dot"></div>Docker ready</div>
+  </div>
+  <p>DevGuard integrates automated testing, security scanning, and containerised deployment into one streamlined pipeline. Security is shifted left — checks happen at every stage, not as an afterthought before production.</p>
+  <div class="btn-row">
+    <a href="/dashboard" class="btn btn-primary">View pipeline</a>
+    <a href="/about" class="btn btn-ghost">Learn more</a>
+  </div>
+</div>
+
+<div class="feat-grid">
+  <div class="feat">
+    <div class="feat-icon">🔍</div>
+    <h3>Security scanning</h3>
+    <p>Bandit and Trivy scan every build automatically. Vulnerabilities are caught before they reach staging.</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">⚡</div>
+    <h3>Fast feedback</h3>
+    <p>pytest runs on every commit. Broken builds are blocked instantly — no manual checks needed.</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon">🐳</div>
+    <h3>Container-ready</h3>
+    <p>Docker-based deployments ensure consistent environments from local laptop to production cloud.</p>
+  </div>
+</div>
+{% endblock %}

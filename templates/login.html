@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block breadcrumb %}Login{% endblock %}
+{% block style %}
+<style>
+.login-wrap{display:flex;justify-content:center;padding-top:16px}
+.login-card{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:32px 36px;width:100%;max-width:400px}
+.login-card h2{font-size:17px;font-weight:600;margin-bottom:4px}
+.login-card .sub{font-size:12.5px;color:var(--text2);margin-bottom:24px}
+.demo-box{background:var(--bg3);border:1px solid var(--border2);border-radius:7px;padding:11px 14px;margin-bottom:20px;font-size:12px;color:var(--text2)}
+.demo-box code{color:var(--accent-t);background:rgba(31,111,235,.08);padding:1px 5px;border-radius:4px}
+.form-group{margin-bottom:16px}
+label{display:block;font-size:11.5px;font-weight:500;color:var(--text2);margin-bottom:6px;letter-spacing:.2px}
+input[type=text],input[type=password]{width:100%;padding:9px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:7px;color:var(--text);font-size:13px;outline:none;font-family:inherit;transition:border-color .15s}
+input[type=text]:focus,input[type=password]:focus{border-color:var(--accent)}
+input::placeholder{color:var(--text3)}
+.btn-submit{width:100%;padding:10px;background:var(--accent);color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;margin-top:6px;transition:background .15s}
+.btn-submit:hover{background:#388bfd}
+.divider{border:none;border-top:1px solid var(--border);margin:18px 0}
+.note{font-size:11.5px;color:var(--text3);text-align:center}
+</style>
+{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Login</h1>
+  <p>Sign in to access the DevGuard pipeline dashboard.</p>
+</div>
+<div class="login-wrap">
+  <div class="login-card">
+    <h2>Sign in to DevGuard</h2>
+    <p class="sub">Enter your credentials to continue.</p>
+    <div class="demo-box">
+      Demo — Username: <code>admin</code> &nbsp;|&nbsp; Password: <code>devguard</code>
+    </div>
+    <div class="form-group">
+      <label for="user">Username</label>
+      <input type="text" id="user" placeholder="Enter your username">
+    </div>
+    <div class="form-group">
+      <label for="pass">Password</label>
+      <input type="password" id="pass" placeholder="••••••••">
+    </div>
+    <button class="btn-submit">Sign in</button>
+    <hr class="divider">
+    <p class="note">Full authentication will be wired in Part 2 — GitHub Actions CI/CD.</p>
+  </div>
+</div>
+{% endblock %}

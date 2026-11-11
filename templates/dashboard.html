@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block breadcrumb %}Dashboard{% endblock %}
+{% block style %}
+<style>
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.mc{background:var(--bg2);border:1px solid var(--border2);border-radius:9px;padding:16px 18px}
+.mc-lbl{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
+.mc-val{font-size:22px;font-weight:600;margin-bottom:3px}
+.mc-sub{font-size:11px;color:var(--text3)}
+.c-green{color:var(--success)}.c-yellow{color:var(--warning)}.c-blue{color:var(--accent-t)}
+
+.tbl-wrap{background:var(--bg2);border:1px solid var(--border2);border-radius:9px;overflow:hidden;margin-bottom:20px}
+table{width:100%;border-collapse:collapse}
+th{background:var(--bg3);font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;padding:10px 16px;text-align:left}
+td{padding:11px 16px;font-size:12.5px;border-top:1px solid var(--border);color:var(--text2)}
+tr:hover td{background:rgba(255,255,255,.02)}
+.sdot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+.dg{background:var(--success)}.dy{background:var(--warning)}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mini-card{background:var(--bg2);border:1px solid var(--border2);border-radius:9px;padding:16px 18px}
+.mini-card h3{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.bar-lbl{font-size:11.5px;color:var(--text2);width:80px}
+.bar-track{flex:1;height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;background:var(--success)}
+.bar-pct{font-size:11px;color:var(--text3);width:30px;text-align:right}
+.commit-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)}
+.commit-row:last-child{border-bottom:none}
+.commit-hash{font-size:11px;font-family:monospace;color:var(--accent-t);background:rgba(31,111,235,.08);padding:2px 7px;border-radius:4px;flex-shrink:0}
+.commit-msg{font-size:12px;color:var(--text2)}
+.commit-time{font-size:10.5px;color:var(--text3);margin-left:auto;flex-shrink:0}
+</style>
+{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Pipeline Dashboard</h1>
+  <p>Live status of the DevGuard deployment pipeline.</p>
+</div>
+
+<div class="metrics">
+  <div class="mc"><div class="mc-lbl">Build status</div><div class="mc-val c-green">Passing</div><div class="mc-sub">Last run 2 min ago</div></div>
+  <div class="mc"><div class="mc-lbl">Test coverage</div><div class="mc-val c-blue">94%</div><div class="mc-sub">8 / 8 tests passing</div></div>
+  <div class="mc"><div class="mc-lbl">Security score</div><div class="mc-val c-yellow">B+</div><div class="mc-sub">2 low-severity findings</div></div>
+  <div class="mc"><div class="mc-lbl">Deploy time</div><div class="mc-val">1m 12s</div><div class="mc-sub">↓ 8s faster than last</div></div>
+</div>
+
+<div class="section-title">Pipeline stages</div>
+<div class="tbl-wrap">
+  <table>
+    <thead><tr><th>Stage</th><th>Status</th><th>Duration</th><th>Last run</th><th>Branch</th></tr></thead>
+    <tbody>
+      <tr><td>Source checkout</td><td class="c-green"><span class="sdot dg"></span>Success</td><td>1s</td><td>2 min ago</td><td>main</td></tr>
+      <tr><td>Install dependencies</td><td class="c-green"><span class="sdot dg"></span>Success</td><td>18s</td><td>2 min ago</td><td>main</td></tr>
+      <tr><td>Run tests (pytest)</td><td class="c-green"><span class="sdot dg"></span>Success</td><td>4s</td><td>2 min ago</td><td>main</td></tr>
+      <tr><td>Docker build</td><td class="c-green"><span class="sdot dg"></span>Success</td><td>32s</td><td>2 min ago</td><td>main</td></tr>
+      <tr><td>Security scan (Bandit)</td><td class="c-yellow"><span class="sdot dy"></span>Warning</td><td>12s</td><td>2 min ago</td><td>main</td></tr>
+      <tr><td>Deploy to staging</td><td class="c-green"><span class="sdot dg"></span>Success</td><td>8s</td><td>2 min ago</td><td>main</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="two-col">
+  <div class="mini-card">
+    <h3>Test coverage by module</h3>
+    <div class="bar-row"><span class="bar-lbl">app.py</span><div class="bar-track"><div class="bar-fill" style="width:94%"></div></div><span class="bar-pct">94%</span></div>
+    <div class="bar-row"><span class="bar-lbl">routes</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-pct">100%</span></div>
+    <div class="bar-row"><span class="bar-lbl">health</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-pct">100%</span></div>
+    <div class="bar-row"><span class="bar-lbl">utils</span><div class="bar-track"><div class="bar-fill" style="width:72%;background:var(--warning)"></div></div><span class="bar-pct">72%</span></div>
+  </div>
+  <div class="mini-card">
+    <h3>Recent commits</h3>
+    <div class="commit-row"><span class="commit-hash">a3f92c1</span><span class="commit-msg">Add /health endpoint</span><span class="commit-time">2m ago</span></div>
+    <div class="commit-row"><span class="commit-hash">b7e14d3</span><span class="commit-msg">Add pytest test suite</span><span class="commit-time">1h ago</span></div>
+    <div class="commit-row"><span class="commit-hash">c91ab22</span><span class="commit-msg">Add Dockerfile</span><span class="commit-time">3h ago</span></div>
+    <div class="commit-row"><span class="commit-hash">d04cc5f</span><span class="commit-msg">Initial Flask app</span><span class="commit-time">5h ago</span></div>
+  </div>
+</div>
+{% endblock %}
