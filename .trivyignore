@@ -1,3 +1,4 @@
 ﻿# Ignore vendored packages inside setuptools that cannot be upgraded
 CVE-2026-23949
 CVE-2026-24049
+CVE-2025-47273
