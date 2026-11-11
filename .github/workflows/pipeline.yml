@@ -1,4 +1,4 @@
-﻿name: DevGuard CI/CD Pipeline
+name: DevGuard CI/CD Pipeline
 
 on:
   push:
@@ -47,6 +47,8 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "true"
+          GITLEAKS_ENABLE_SUMMARY: "true"
 
   docker_build_scan:
     name: 'Stage 3 - Docker Build + Trivy Scan'
@@ -198,3 +200,5 @@ jobs:
         run: |
           echo "Deployment complete - Green is now LIVE"
           echo "Image: ashwadama/devguard:${{ github.sha }}"
+
+
