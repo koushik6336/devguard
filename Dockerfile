@@ -3,7 +3,9 @@
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --upgrade pip setuptools==78.1.1 wheel && pip install -r requirements.txt
+RUN pip install --upgrade pip setuptools==78.1.1 wheel && \
+    pip install -r requirements.txt && \
+    pip cache purge
 
 COPY . .
 
